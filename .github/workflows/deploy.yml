@@ -40,10 +40,11 @@ jobs:
             echo "===== CONTAINER LOGS ====="
             sudo docker logs flask-app-flask-app-1 || true
             echo "===== HEALTH CHECK ====="
+            sleep 5
             curl -4 --fail --silent --show-error \
               --retry 10 \
               --retry-delay 3 \
-              --retry-connrefused \
+              --retry-all-errors \
               http://127.0.0.1:5000
             echo
             echo "APP_HEALTHY"
